@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelK = new System.Windows.Forms.Label();
@@ -72,25 +72,27 @@
             this.labelL4range = new System.Windows.Forms.Label();
             this.labelT4range = new System.Windows.Forms.Label();
             this.labelXIrange = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // chart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart.Legends.Add(legend2);
-            this.chart.Location = new System.Drawing.Point(12, 203);
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
+            this.chart.Location = new System.Drawing.Point(12, 154);
             this.chart.Name = "chart";
-            series2.BorderColor = System.Drawing.Color.Black;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart.Series.Add(series2);
-            this.chart.Size = new System.Drawing.Size(851, 317);
+            series1.BorderColor = System.Drawing.Color.Black;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
+            this.chart.Size = new System.Drawing.Size(997, 366);
             this.chart.TabIndex = 0;
             this.chart.TabStop = false;
             this.chart.Text = "chart1";
@@ -257,9 +259,9 @@
             // 
             // buttonCompute
             // 
-            this.buttonCompute.Location = new System.Drawing.Point(746, 143);
+            this.buttonCompute.Location = new System.Drawing.Point(815, 70);
             this.buttonCompute.Name = "buttonCompute";
-            this.buttonCompute.Size = new System.Drawing.Size(117, 54);
+            this.buttonCompute.Size = new System.Drawing.Size(194, 54);
             this.buttonCompute.TabIndex = 13;
             this.buttonCompute.Text = "Построить график";
             this.buttonCompute.UseVisualStyleBackColor = true;
@@ -318,7 +320,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(12, 70);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(728, 127);
+            this.pictureBox1.Size = new System.Drawing.Size(651, 78);
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
@@ -343,7 +345,7 @@
             // labelL1range
             // 
             this.labelL1range.AutoSize = true;
-            this.labelL1range.Location = new System.Drawing.Point(284, 35);
+            this.labelL1range.Location = new System.Drawing.Point(290, 35);
             this.labelL1range.Name = "labelL1range";
             this.labelL1range.Size = new System.Drawing.Size(49, 13);
             this.labelL1range.TabIndex = 15;
@@ -361,7 +363,7 @@
             // labelL2range
             // 
             this.labelL2range.AutoSize = true;
-            this.labelL2range.Location = new System.Drawing.Point(416, 35);
+            this.labelL2range.Location = new System.Drawing.Point(422, 35);
             this.labelL2range.Name = "labelL2range";
             this.labelL2range.Size = new System.Drawing.Size(49, 13);
             this.labelL2range.TabIndex = 15;
@@ -379,7 +381,7 @@
             // labelL3range
             // 
             this.labelL3range.AutoSize = true;
-            this.labelL3range.Location = new System.Drawing.Point(548, 35);
+            this.labelL3range.Location = new System.Drawing.Point(554, 35);
             this.labelL3range.Name = "labelL3range";
             this.labelL3range.Size = new System.Drawing.Size(49, 13);
             this.labelL3range.TabIndex = 15;
@@ -397,7 +399,7 @@
             // labelL4range
             // 
             this.labelL4range.AutoSize = true;
-            this.labelL4range.Location = new System.Drawing.Point(680, 35);
+            this.labelL4range.Location = new System.Drawing.Point(686, 35);
             this.labelL4range.Name = "labelL4range";
             this.labelL4range.Size = new System.Drawing.Size(49, 13);
             this.labelL4range.TabIndex = 15;
@@ -415,17 +417,40 @@
             // labelXIrange
             // 
             this.labelXIrange.AutoSize = true;
-            this.labelXIrange.Location = new System.Drawing.Point(814, 35);
+            this.labelXIrange.Location = new System.Drawing.Point(820, 35);
             this.labelXIrange.Name = "labelXIrange";
             this.labelXIrange.Size = new System.Drawing.Size(49, 13);
             this.labelXIrange.TabIndex = 15;
             this.labelXIrange.Text = "0,1...200";
             // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(750, 70);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(59, 54);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Таблица";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(685, 70);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(59, 54);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "ЛФЧХ";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(874, 532);
+            this.ClientSize = new System.Drawing.Size(1021, 532);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelXIrange);
             this.Controls.Add(this.labelT4range);
             this.Controls.Add(this.labelL4range);
@@ -517,6 +542,8 @@
         private System.Windows.Forms.Label labelL4range;
         private System.Windows.Forms.Label labelT4range;
         private System.Windows.Forms.Label labelXIrange;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
