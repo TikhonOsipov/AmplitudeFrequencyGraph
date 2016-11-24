@@ -1,0 +1,11 @@
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.csprojResolveAssemblyReference.cache
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.Form1.resources
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.Form2.resources
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.Form3.resources
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.Form4.resources
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.Properties.Resources.resources
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.csproj.GenerateResource.Cache
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\bin\Debug\ЛАЧХ.exe
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\bin\Debug\ЛАЧХ.pdb
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.exe
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.pdb
