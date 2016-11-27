@@ -40,7 +40,7 @@ namespace ЛАЧХ
         List<double> omegas;
         private List<String> data, data1, data2;
 
-        //open table (0)
+        //открыть окно с таблицей для первого набора данных
         private void button1_Click(object sender, EventArgs e)
         {
             Form4 form4 = new Form4();
@@ -48,7 +48,7 @@ namespace ЛАЧХ
             form4.setData(data);
         }
 
-        //open table (1)
+        //открыть окно с таблицей для второго набора данных
         private void openTable1_Click(object sender, EventArgs e)
         {
             Form4 form4 = new Form4();
@@ -56,12 +56,42 @@ namespace ЛАЧХ
             form4.setData(data1);
         }
 
-        //open table (2)
+        //открыть окно с таблицей для третього набора данных
         private void openTable2_Click(object sender, EventArgs e)
         {
             Form4 form4 = new Form4();
             form4.Show();
             form4.setData(data2);
+        }
+
+        //ввод второго набора данных
+        private void initVariables2()
+        {
+            l0_1 = int.Parse(textBoxL0_1.Text.Replace(".", ","));
+            l1_1 = int.Parse(textBoxL1_1.Text.Replace(".", ","));
+            l2_1 = int.Parse(textBoxL2_1.Text.Replace(".", ","));
+            l3_1 = int.Parse(textBoxL3_1.Text.Replace(".", ","));
+            l4_1 = int.Parse(textBoxL4_1.Text.Replace(".", ","));
+            T1_1 = double.Parse(textBoxT1_1.Text.Replace(".", ","));
+            T2_1 = double.Parse(textBoxT2_1.Text.Replace(".", ","));
+            T3_1 = double.Parse(textBoxT3_1.Text.Replace(".", ","));
+            T4_1 = double.Parse(textBoxT4_1.Text.Replace(".", ","));
+            ksi4_1 = double.Parse(textBoxKsi4_1.Text.Replace(".", ","));
+        }
+
+        //ввод третього набора данных
+        private void initVariables3()
+        {
+            l0_2 = int.Parse(textBoxL0_2.Text.Replace(".", ","));
+            l1_2 = int.Parse(textBoxL1_2.Text.Replace(".", ","));
+            l2_2 = int.Parse(textBoxL2_2.Text.Replace(".", ","));
+            l3_2 = int.Parse(textBoxL3_2.Text.Replace(".", ","));
+            l4_2 = int.Parse(textBoxL4_2.Text.Replace(".", ","));
+            T1_2 = double.Parse(textBoxT1_2.Text.Replace(".", ","));
+            T2_2 = double.Parse(textBoxT2_2.Text.Replace(".", ","));
+            T3_2 = double.Parse(textBoxT3_2.Text.Replace(".", ","));
+            T4_2 = double.Parse(textBoxT4_2.Text.Replace(".", ","));
+            ksi4_2 = double.Parse(textBoxKsi4_2.Text.Replace(".", ","));
         }
 
         private void toggleGraphics_Click(object sender, EventArgs e)
@@ -102,27 +132,8 @@ namespace ЛАЧХ
             data1 = new List<String>();
             data2 = new List<String>();
 
-            l0_1 = int.Parse(textBoxL0_1.Text.Replace(".", ","));
-            l1_1 = int.Parse(textBoxL1_1.Text.Replace(".", ","));
-            l2_1 = int.Parse(textBoxL2_1.Text.Replace(".", ","));
-            l3_1 = int.Parse(textBoxL3_1.Text.Replace(".", ","));
-            l4_1 = int.Parse(textBoxL4_1.Text.Replace(".", ","));
-            T1_1 = double.Parse(textBoxT1_1.Text.Replace(".", ","));
-            T2_1 = double.Parse(textBoxT2_1.Text.Replace(".", ","));
-            T3_1 = double.Parse(textBoxT3_1.Text.Replace(".", ","));
-            T4_1 = double.Parse(textBoxT4_1.Text.Replace(".", ","));
-            ksi4_1 = double.Parse(textBoxKsi4_1.Text.Replace(".", ","));
-
-            l0_2 = int.Parse(textBoxL0_2.Text.Replace(".", ","));
-            l1_2 = int.Parse(textBoxL1_2.Text.Replace(".", ","));
-            l2_2 = int.Parse(textBoxL2_2.Text.Replace(".", ","));
-            l3_2 = int.Parse(textBoxL3_2.Text.Replace(".", ","));
-            l4_2 = int.Parse(textBoxL4_2.Text.Replace(".", ","));
-            T1_2 = double.Parse(textBoxT1_2.Text.Replace(".", ","));
-            T2_2 = double.Parse(textBoxT2_2.Text.Replace(".", ","));
-            T3_2 = double.Parse(textBoxT3_2.Text.Replace(".", ","));
-            T4_2 = double.Parse(textBoxT4_2.Text.Replace(".", ","));
-            ksi4_2 = double.Parse(textBoxKsi4_2.Text.Replace(".", ","));
+            initVariables2();
+            initVariables3();
 
             List<double> afcs1 = new List<double>();
             List<double> afcs2 = new List<double>();
@@ -283,6 +294,7 @@ namespace ЛАЧХ
             this.labelXI_2range.Text = "0...1";
         }
 
+        //подготовка графика к работе
         private void formatChartArea(ChartArea chartArea)
         {
             Axis xAxis = chartArea.AxisX;
@@ -310,6 +322,7 @@ namespace ЛАЧХ
             xAxis.Maximum = omegaEnd;
         }
 
+        //кнопка "построить график"
         private void buttonCompute_Click(object sender, EventArgs e)
         {
             if (textBoxWStart.Text == "" || textBoxWEnd.Text == "" ||
@@ -324,6 +337,7 @@ namespace ЛАЧХ
             this.button1.Enabled = true;
             this.toggleGraphics.Enabled = true;
 
+            //ввод данных
             double omegaStart = double.Parse(textBoxWStart.Text.Replace(".", ","));
             firstOmega = omegaStart;
             double omegaEnd = double.Parse(textBoxWEnd.Text.Replace(".", ","));
@@ -354,6 +368,7 @@ namespace ЛАЧХ
 
             omegas.Add(omegaStart);
 
+            //формирование списка omegas
             while (omegas[omegas.Count - 1] < omegaEnd)
             {
                 if (omegas[omegas.Count - 1] / firstOmega >= 10) {
@@ -376,11 +391,13 @@ namespace ЛАЧХ
             formatChartArea(this.chart.ChartAreas[0]);
         }
 
+        //преобразование радиан в градусы
         private double radToDegree(double rad)
         {
             return rad * (180.0 / Math.PI);
         }
 
+        //функция для вычисления ЛФЧХ
         private double PFC(double omega, int l0, int l1, int l2, int l3,
             int l4, double T1, double T2, double T3, double T4, double ksi4)
         {
@@ -390,16 +407,13 @@ namespace ЛАЧХ
             result += l3 * Math.Atan(T3 * omega);
             result += l4 * Math.Atan((2 * ksi4 * T4 * omega) / (1 - Math.Pow(T4 * omega, 2)));
 
-            //convert to degrees from radians
+            //преобразование радиан в градусы
             result = radToDegree(result);
-            //181>180? y: 360-181=179; 179 * -1 = -179
-            if(result > 180)
-            {
-                result = (360 - result) * -1;
-            }
+            if (result > 180) result = (360 - result) * -1;
             return result;
         }
 
+        //форматирование вывода
         private void formatOutput(double omega, double function, List<String> list)
         {
             String omegaFormat = String.Format("{0, 9}", String.Format("{0:F5}", omega));

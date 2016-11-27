@@ -94,13 +94,21 @@ namespace ЛАЧХ
             button2_Click(sender, e);
         }
 
+        //открыть окно с таблицей для первого набора данных
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+            form2.setData(data);
+        }
+
         //open table (0)
         private void button1_Click_1(object sender, EventArgs e)
         {
             button1_Click(sender, e);
         }
 
-        //open table (1)
+        //открыть окно с таблицей для второго набора данных
         private void openTable1_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
@@ -108,7 +116,7 @@ namespace ЛАЧХ
             form2.setData(data1);
         }
 
-        //open table (2)
+        //открыть окно с таблицей для третьего набора данных
         private void openTable2_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
@@ -122,7 +130,7 @@ namespace ЛАЧХ
         }
 
 
-        //on/off graphics
+        //кнопка "вкл/выкл графиков"
         private void button3_Click(object sender, EventArgs e)
         {
             //check input fields
@@ -158,29 +166,8 @@ namespace ЛАЧХ
                 return;
             }
 
-            K1 = double.Parse(textBoxK1.Text.Replace(".", ","));
-            l0_1 = int.Parse(textBoxL0_1.Text.Replace(".", ","));
-            l1_1 = int.Parse(textBoxL1_1.Text.Replace(".", ","));
-            l2_1 = int.Parse(textBoxL2_1.Text.Replace(".", ","));
-            l3_1 = int.Parse(textBoxL3_1.Text.Replace(".", ","));
-            l4_1 = int.Parse(textBoxL4_1.Text.Replace(".", ","));
-            T1_1 = double.Parse(textBoxT1_1.Text.Replace(".", ","));
-            T2_1 = double.Parse(textBoxT2_1.Text.Replace(".", ","));
-            T3_1 = double.Parse(textBoxT3_1.Text.Replace(".", ","));
-            T4_1 = double.Parse(textBoxT4_1.Text.Replace(".", ","));
-            ksi4_1 = double.Parse(textBoxKsi4_1.Text.Replace(".", ","));
-
-            K2 = double.Parse(textBoxK2.Text.Replace(".", ","));
-            l0_2 = int.Parse(textBoxL0_2.Text.Replace(".", ","));
-            l1_2 = int.Parse(textBoxL1_2.Text.Replace(".", ","));
-            l2_2 = int.Parse(textBoxL2_2.Text.Replace(".", ","));
-            l3_2 = int.Parse(textBoxL3_2.Text.Replace(".", ","));
-            l4_2 = int.Parse(textBoxL4_2.Text.Replace(".", ","));
-            T1_2 = double.Parse(textBoxT1_2.Text.Replace(".", ","));
-            T2_2 = double.Parse(textBoxT2_2.Text.Replace(".", ","));
-            T3_2 = double.Parse(textBoxT3_2.Text.Replace(".", ","));
-            T4_2 = double.Parse(textBoxT4_2.Text.Replace(".", ","));
-            ksi4_2 = double.Parse(textBoxKsi4_2.Text.Replace(".", ","));
+            initVariables2();
+            initVariables3();
 
             data1 = new List<String>();
             data2 = new List<String>();
@@ -202,6 +189,7 @@ namespace ЛАЧХ
             this.chart.Series[2].Points.DataBindXY(omegas, afcs2);
         }
 
+        //подготовка графика к работе
         private void formatChartArea(ChartArea chartArea)
         {
             Axis xAxis = chartArea.AxisX;
@@ -227,20 +215,9 @@ namespace ЛАЧХ
             xAxis.Maximum = omegaEnd;
         }
 
-        private void buttonCompute_Click(object sender, EventArgs e)
+        //ввод первого набора данных
+        private void initVariables()
         {
-            if (textBoxWStart.Text == "" || textBoxWEnd.Text == "" || textBoxK.Text == "" ||
-                textBoxL0.Text == "" || textBoxL1.Text == "" || textBoxL2.Text == "" ||
-                textBoxL3.Text == "" || textBoxL4.Text == "" || textBoxT1.Text == "" ||
-                textBoxT2.Text == "" || textBoxT3.Text == "" || textBoxT4.Text == "" ||
-                textBoxKsi4.Text == "")
-            {
-                MessageBox.Show("Пожалуйста, заполните все поля.");
-                return;
-            }
-            this.button1.Enabled = true;
-            this.button3.Enabled = true;
-
             omegaStart = double.Parse(textBoxWStart.Text.Replace(".", ","));
             firstOmega = omegaStart;
             omegaEnd = double.Parse(textBoxWEnd.Text.Replace(".", ","));
@@ -255,18 +232,43 @@ namespace ЛАЧХ
             T3 = double.Parse(textBoxT3.Text.Replace(".", ","));
             T4 = double.Parse(textBoxT4.Text.Replace(".", ","));
             ksi4 = double.Parse(textBoxKsi4.Text.Replace(".", ","));
+        }
 
-            omegas = new List<double>();
-            List<double> afcs = new List<double>();
-            data = new List<String>();
+        //ввод второго набора данных
+        private void initVariables2()
+        {
+            K1 = double.Parse(textBoxK1.Text.Replace(".", ","));
+            l0_1 = int.Parse(textBoxL0_1.Text.Replace(".", ","));
+            l1_1 = int.Parse(textBoxL1_1.Text.Replace(".", ","));
+            l2_1 = int.Parse(textBoxL2_1.Text.Replace(".", ","));
+            l3_1 = int.Parse(textBoxL3_1.Text.Replace(".", ","));
+            l4_1 = int.Parse(textBoxL4_1.Text.Replace(".", ","));
+            T1_1 = double.Parse(textBoxT1_1.Text.Replace(".", ","));
+            T2_1 = double.Parse(textBoxT2_1.Text.Replace(".", ","));
+            T3_1 = double.Parse(textBoxT3_1.Text.Replace(".", ","));
+            T4_1 = double.Parse(textBoxT4_1.Text.Replace(".", ","));
+            ksi4_1 = double.Parse(textBoxKsi4_1.Text.Replace(".", ","));
+        }
 
-            if (textBoxStep.Text == "") {
-                step = 0.0001;
-            }
-            else {
-                step = double.Parse(textBoxStep.Text.Replace(".", ","));
-            }
+        //ввод третьего набора данных
+        private void initVariables3()
+        {
+            K2 = double.Parse(textBoxK2.Text.Replace(".", ","));
+            l0_2 = int.Parse(textBoxL0_2.Text.Replace(".", ","));
+            l1_2 = int.Parse(textBoxL1_2.Text.Replace(".", ","));
+            l2_2 = int.Parse(textBoxL2_2.Text.Replace(".", ","));
+            l3_2 = int.Parse(textBoxL3_2.Text.Replace(".", ","));
+            l4_2 = int.Parse(textBoxL4_2.Text.Replace(".", ","));
+            T1_2 = double.Parse(textBoxT1_2.Text.Replace(".", ","));
+            T2_2 = double.Parse(textBoxT2_2.Text.Replace(".", ","));
+            T3_2 = double.Parse(textBoxT3_2.Text.Replace(".", ","));
+            T4_2 = double.Parse(textBoxT4_2.Text.Replace(".", ","));
+            ksi4_2 = double.Parse(textBoxKsi4_2.Text.Replace(".", ","));
+        }
 
+        //формирование списка omegas
+        private void initOmegas()
+        {
             omegas.Add(omegaStart);
 
             while (omegas[omegas.Count - 1] < omegaEnd)
@@ -278,8 +280,39 @@ namespace ЛАЧХ
                 }
                 omegas.Add(omegas[omegas.Count - 1] + step);
             }
+        }
 
+        //кнопка "построить график"
+        private void buttonCompute_Click(object sender, EventArgs e)
+        {
+            //проверка на заполненность полей: если хотя бы одно не заполнено, выведет ошибку
+            if (textBoxWStart.Text == "" || textBoxWEnd.Text == "" || textBoxK.Text == "" ||
+                textBoxL0.Text == "" || textBoxL1.Text == "" || textBoxL2.Text == "" ||
+                textBoxL3.Text == "" || textBoxL4.Text == "" || textBoxT1.Text == "" ||
+                textBoxT2.Text == "" || textBoxT3.Text == "" || textBoxT4.Text == "" ||
+                textBoxKsi4.Text == "")
+            {
+                MessageBox.Show("Пожалуйста, заполните все поля.");
+                return;
+            }
+            //активация кнопок таблицы и вкл/выкл графиков
+            this.button1.Enabled = true;
+            this.button3.Enabled = true;
 
+            //ввод из полей
+            initVariables();
+
+            omegas = new List<double>(); //массив значений omega
+            data = new List<String>(); //массив строк для вывода в таблицу
+            List<double> afcs = new List<double>(); //массив значений L(omega)
+
+            //если поле шага пустое, использовать значение по умолчанию; иначе ввод шага
+            if (textBoxStep.Text == "") step = 0.0001; else step = double.Parse(textBoxStep.Text.Replace(".", ","));
+
+            //формирование массива omegas
+            initOmegas();
+
+            //формирование массива значений L(omega) и вывод на график
             for (int i = 0; i < omegas.Count; i++) {
                 double omega = omegas[i];
                 double afcValue = AFC(omega, K, l0, l1, l2, l3, l4, T1, T2, T3, T4, ksi4);
@@ -291,6 +324,7 @@ namespace ЛАЧХ
             formatChartArea(this.chart.ChartAreas[0]);
         }
 
+        //функция для вычисления ЛАЧХ
         private double AFC(double omega, double K, int l0, int l1, int l2, int l3,
             int l4, double T1, double T2, double T3, double T4, double ksi4)
         {
@@ -304,13 +338,7 @@ namespace ЛАЧХ
             return result;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Form2 form2 = new Form2();
-            form2.Show();
-            form2.setData(data);
-        }
-
+        //открыть окно для вычисления ФЧХ
         private void button2_Click(object sender, EventArgs e)
         {
             Form3 form3 = new Form3();
@@ -320,6 +348,7 @@ namespace ЛАЧХ
             form3.setFields2(l0_2, l1_2, l2_2, l3_2, l4_2, T1_2, T2_2, T3_2, T4_2, ksi4_2);
         }
 
+        //форматированный вывод данных
         private void formatOutput(double omega, double function, List<String> list)
         {
             String omegaFormat = String.Format("{0, 9}", String.Format("{0:F5}", omega));
