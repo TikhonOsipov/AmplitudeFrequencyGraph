@@ -409,7 +409,6 @@ namespace ЛАЧХ
 
             //преобразование радиан в градусы
             result = radToDegree(result);
-            if (result > 180) result = (360 - result) * -1;
             return result;
         }
 
