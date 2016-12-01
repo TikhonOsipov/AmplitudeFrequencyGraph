@@ -153,6 +153,20 @@ namespace ЛАЧХ
             ksi4 = double.Parse(textBoxKsi4.Text.Replace(".", ","));
         }
 
+        private Boolean dataIsCorrect(double K, int l0, int l1, int l2, int l3,
+            int l4, double T1, double T2, double T3, double T4, double ksi4)
+        {
+            return (l0 == 0 || l0 == 1 || l0 == -1 || l0 == 2 || l0 == -2) &&
+                (l1 == 0 || l1 == 1 || l1 == -1) &&
+                (l2 == 0 || l2 == 1 || l2 == -1) &&
+                (l3 == 0 || l3 == 1 || l3 == -1) &&
+                (l4 == 0 || l4 == 1 || l4 == -1) &&
+                (T1 >= 0.01 && T1 <= 100) && (T2 >= 0.01 && T2 <= 100) &&
+                (T3 >= 0.01 && T3 <= 100) && (T4 >= 0.01 && T4 <= 100) &&
+                (ksi4 >= 0 && ksi4 <= 1) &&
+                (K >= 0.1 && K <= 200);
+        }
+
         //формирование списка omegas
         private void initOmegas()
         {
@@ -189,6 +203,12 @@ namespace ЛАЧХ
 
                 //ввод из полей
                 initVariables();
+
+                if (!dataIsCorrect(K, l0, l1, l2, l3, l4, T1, T2, T3, T4, ksi4))
+                {
+                    MessageBox.Show("Пожалуйста, заполните все поля корректно.");
+                    return;
+                }
 
                 omegas = new List<double>(); //массив значений omega
                 data = new List<String>(); //массив строк для вывода в таблицу
