@@ -245,7 +245,7 @@ namespace ЛАЧХ
             //преобразование радиан в градусы
             result = radToDegree(result);
 
-            if (omega > 1 / T4) result -= 180;
+            if (omega >= 1 / T4 && omega < omegaEnd) result -= 180;
             return result;
         }
 
