@@ -30,7 +30,7 @@ namespace ЛАЧХ
             button1_Click(sender, e);
         }
 
-        List<double> omegas;
+        List<double> omegas, afcs;
         private List<String> data;
 
         //открыть окно с таблицей для первого набора данных
@@ -51,6 +51,16 @@ namespace ЛАЧХ
         private void openTable2_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void chart_Click(object sender, EventArgs e)
+        {
+            FormPfcGraph formPfcGraph = new FormPfcGraph();
+            if (omegas != null && afcs != null)
+            {
+                formPfcGraph.setData(omegas, afcs);
+                formPfcGraph.Show();
+            }
         }
 
         private void toggleGraphics_Click(object sender, EventArgs e)
@@ -183,7 +193,7 @@ namespace ЛАЧХ
                 this.chart.ChartAreas[0].AxisX.Maximum = omegaEnd;
 
                 omegas = new List<double>();
-                List<double> afcs = new List<double>();
+                afcs = new List<double>();
                 data = new List<String>();
 
                 omegas.Add(omegaStart);

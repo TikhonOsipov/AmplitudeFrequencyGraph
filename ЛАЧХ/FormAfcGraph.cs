@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
+namespace ЛАЧХ
+{
+    public partial class FormAfcGraph : Form
+    {
+        public FormAfcGraph()
+        {
+            InitializeComponent();
+            this.chart.Series[0].LegendText = "L(ω)";
+        }
+
+        public void setData(List<double> omegas, List<double> afcs)
+        {
+            this.chart.Series[0].Points.DataBindXY(omegas, afcs);
+            formatChartArea(this.chart.ChartAreas[0], omegas[0], omegas[omegas.Count-1]);
+        }
+
+        //подготовка графика к работе
+        private void formatChartArea(ChartArea chartArea, double min, double max)
+        {
+            Axis xAxis = chartArea.AxisX;
+            Axis yAxis = chartArea.AxisY;
+
+            xAxis.IsLogarithmic = true;
+            xAxis.LogarithmBase = 10;
+
+            xAxis.LabelStyle.Enabled = true;
+            xAxis.MinorGrid.Enabled = true;
+            xAxis.MinorGrid.LineColor = Color.Gainsboro;
+            xAxis.MinorGrid.Interval = 1;
+
+            xAxis.MajorGrid.Enabled = true;
+            xAxis.MajorGrid.LineColor = Color.Gainsboro;
+            xAxis.MajorGrid.LineColor = Color.Gainsboro;
+
+            xAxis.LabelStyle.Format = "#0.#####";
+            xAxis.Title = "ω, рад/с";
+            yAxis.Title = "L(ω), дБ";
+
+            xAxis.Minimum = min;
+            xAxis.Maximum = max;
+        }
+    }
+}

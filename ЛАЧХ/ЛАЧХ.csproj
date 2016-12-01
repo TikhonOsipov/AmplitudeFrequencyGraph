@@ -69,6 +69,18 @@
     <Compile Include="Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAfcGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAfcGraph.Designer.cs">
+      <DependentUpon>FormAfcGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPfcGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPfcGraph.Designer.cs">
+      <DependentUpon>FormPfcGraph.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -82,6 +94,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAfcGraph.resx">
+      <DependentUpon>FormAfcGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPfcGraph.resx">
+      <DependentUpon>FormPfcGraph.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -9,3 +9,5 @@ C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\bin\Debu
 C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\bin\Debug\ЛАЧХ.pdb
 C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.exe
 C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.pdb
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.FormAfcGraph.resources
+C:\Users\Tikhon\Documents\Visual Studio 2015\Projects\ЛАЧХ\ЛАЧХ\obj\Debug\ЛАЧХ.FormPfcGraph.resources

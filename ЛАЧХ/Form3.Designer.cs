@@ -404,6 +404,7 @@
             this.chart.TabIndex = 58;
             this.chart.TabStop = false;
             this.chart.Text = "chart1";
+            this.chart.Click += new System.EventHandler(this.chart_Click);
             // 
             // Form3
             // 

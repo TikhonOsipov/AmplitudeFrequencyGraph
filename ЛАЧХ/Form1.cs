@@ -43,7 +43,7 @@ namespace ЛАЧХ
             this.labelXIrange.Text = "0...1";
         }
 
-        private List<double> omegas;
+        private List<double> omegas, afcs;
         private List<String> data;
 
         double omegaStart, omegaEnd, K;
@@ -71,6 +71,16 @@ namespace ЛАЧХ
         private void button1_Click_1(object sender, EventArgs e)
         {
             button1_Click(sender, e);
+        }
+
+        private void chart_Click(object sender, EventArgs e)
+        {
+            FormAfcGraph formAfcGraph = new FormAfcGraph();
+            if(omegas != null && afcs != null)
+            {
+                formAfcGraph.setData(omegas, afcs);
+                formAfcGraph.Show();
+            }
         }
 
         //открыть окно с таблицей для второго набора данных
@@ -182,7 +192,7 @@ namespace ЛАЧХ
 
                 omegas = new List<double>(); //массив значений omega
                 data = new List<String>(); //массив строк для вывода в таблицу
-                List<double> afcs = new List<double>(); //массив значений L(omega)
+                afcs = new List<double>(); //массив значений L(omega)
 
                 //формирование массива omegas
                 initOmegas();
