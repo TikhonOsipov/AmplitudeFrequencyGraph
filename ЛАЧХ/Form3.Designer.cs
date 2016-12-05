@@ -70,6 +70,7 @@
             this.textBoxL0 = new System.Windows.Forms.TextBox();
             this.labelL0 = new System.Windows.Forms.Label();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.buttonOpenLAFC = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.SuspendLayout();
@@ -186,7 +187,7 @@
             // 
             // buttonCompute
             // 
-            this.buttonCompute.Location = new System.Drawing.Point(866, 51);
+            this.buttonCompute.Location = new System.Drawing.Point(936, 12);
             this.buttonCompute.Name = "buttonCompute";
             this.buttonCompute.Size = new System.Drawing.Size(143, 54);
             this.buttonCompute.TabIndex = 32;
@@ -400,17 +401,28 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart.Series.Add(series1);
-            this.chart.Size = new System.Drawing.Size(997, 366);
+            this.chart.Size = new System.Drawing.Size(1067, 366);
             this.chart.TabIndex = 58;
             this.chart.TabStop = false;
             this.chart.Text = "chart1";
             this.chart.Click += new System.EventHandler(this.chart_Click);
             // 
+            // buttonOpenLAFC
+            // 
+            this.buttonOpenLAFC.Location = new System.Drawing.Point(871, 12);
+            this.buttonOpenLAFC.Name = "buttonOpenLAFC";
+            this.buttonOpenLAFC.Size = new System.Drawing.Size(59, 54);
+            this.buttonOpenLAFC.TabIndex = 95;
+            this.buttonOpenLAFC.Text = "ЛАЧХ";
+            this.buttonOpenLAFC.UseVisualStyleBackColor = true;
+            this.buttonOpenLAFC.Click += new System.EventHandler(this.buttonOpenLAFC_Click);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1021, 503);
+            this.ClientSize = new System.Drawing.Size(1091, 503);
+            this.Controls.Add(this.buttonOpenLAFC);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelXIrange);
             this.Controls.Add(this.labelT4range);
@@ -498,5 +510,6 @@
         private System.Windows.Forms.TextBox textBoxL0;
         private System.Windows.Forms.Label labelL0;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
+        private System.Windows.Forms.Button buttonOpenLAFC;
     }
 }

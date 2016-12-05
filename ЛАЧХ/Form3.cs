@@ -13,12 +13,19 @@ namespace ЛАЧХ
 {
     public partial class Form3 : Form
     {
+        Form1 form1;
+        CommonData commonData;
         double omegaStart, omegaEnd;
         int l0, l1, l2, l3, l4;
         double T1, T2, T3, T4, ksi4;
 
         double firstOmega;
         double step;
+
+        public void setForm1(Form1 form1)
+        {
+            this.form1 = form1;
+        }
 
         private void buttonCompute_Click_1(object sender, EventArgs e)
         {
@@ -37,6 +44,7 @@ namespace ЛАЧХ
         private void button1_Click(object sender, EventArgs e)
         {
             Form4 form4 = new Form4();
+            calculateTable(omegaStart, omegaEnd, data);
             form4.Show();
             form4.setData(data);
         }
@@ -63,39 +71,34 @@ namespace ЛАЧХ
             }
         }
 
+        private void buttonOpenLAFC_Click(object sender, EventArgs e)
+        {
+            if (form1 == null) form1 = new Form1();
+            input();
+            form1.Show();
+            form1.BringToFront();
+            form1.updateCommonData();
+        }
+
         private void toggleGraphics_Click(object sender, EventArgs e)
         {
             
         }
 
-        public void setFields(double omegaStart, double omegaEnd, int l0, int l1, int l2, int l3,
-            int l4, double T1, double T2, double T3, double T4, double ksi4)
+        private void insertDataInFields()
         {
-            this.omegaStart = omegaStart;
-            this.omegaEnd = omegaEnd;
-            this.l0 = l0;
-            this.l1 = l1;
-            this.l2 = l2;
-            this.l3 = l3;
-            this.l4 = l4;
-            this.T1 = T1;
-            this.T2 = T2;
-            this.T3 = T3;
-            this.T4 = T4;
-            this.ksi4 = ksi4;
-
-            this.textBoxWStart.Text = omegaStart.ToString();
-            this.textBoxWEnd.Text = omegaEnd.ToString();
-            this.textBoxL0.Text = l0.ToString();
-            this.textBoxL1.Text = l1.ToString();
-            this.textBoxL2.Text = l2.ToString();
-            this.textBoxL3.Text = l3.ToString();
-            this.textBoxL4.Text = l4.ToString();
-            this.textBoxT1.Text = T1.ToString();
-            this.textBoxT2.Text = T2.ToString();
-            this.textBoxT3.Text = T3.ToString();
-            this.textBoxT4.Text = T4.ToString();
-            this.textBoxKsi4.Text = ksi4.ToString();
+            this.textBoxWStart.Text = commonData.getOmegaStart().ToString();
+            this.textBoxWEnd.Text = commonData.getOmegaEnd().ToString();
+            this.textBoxL0.Text = commonData.getL0().ToString();
+            this.textBoxL1.Text = commonData.getL1().ToString();
+            this.textBoxL2.Text = commonData.getL2().ToString();
+            this.textBoxL3.Text = commonData.getL3().ToString();
+            this.textBoxL4.Text = commonData.getL4().ToString();
+            this.textBoxT1.Text = commonData.getT1().ToString();
+            this.textBoxT2.Text = commonData.getT2().ToString();
+            this.textBoxT3.Text = commonData.getT3().ToString();
+            this.textBoxT4.Text = commonData.getT4().ToString();
+            this.textBoxKsi4.Text = commonData.getXi4().ToString();
         }
 
         public Form3()
@@ -103,8 +106,16 @@ namespace ЛАЧХ
             InitializeComponent();
             this.chart.Series[0].LegendText = "Θ(ω)";
             formatLabels();
+            commonData = CommonData.getInstance();
+            insertDataInFields();
         }
 
+        public void updateCommonData()
+        {
+            this.commonData = CommonData.getInstance();
+            insertDataInFields();
+        }
+        
         private void formatLabels()
         {
             this.labelWStart.Text = "ω1"; //ξω
@@ -146,7 +157,7 @@ namespace ЛАЧХ
             xAxis.MajorGrid.LineColor = Color.Gainsboro;
 
             xAxis.LabelStyle.Format = "#0.#####";
-            xAxis.Title = "ω, рад/с";
+            xAxis.Title = "lg(ω), рад/с";
             yAxis.Title = "Θ(ω), град";
             yAxis.Interval = 20;
             yAxis.MajorGrid.LineColor = Color.Gainsboro;
@@ -168,6 +179,26 @@ namespace ЛАЧХ
                 (ksi4 >= 0 && ksi4 <= 1);
         }
 
+        private void input()
+        {
+            this.omegaStart = double.Parse(textBoxWStart.Text.Replace(".", ","));
+            firstOmega = omegaStart;
+            step = 0.01 / 100;
+            this.omegaEnd = double.Parse(textBoxWEnd.Text.Replace(".", ","));
+            this.l0 = int.Parse(textBoxL0.Text.Replace(".", ","));
+            this.l1 = int.Parse(textBoxL1.Text.Replace(".", ","));
+            this.l2 = int.Parse(textBoxL2.Text.Replace(".", ","));
+            this.l3 = int.Parse(textBoxL3.Text.Replace(".", ","));
+            this.l4 = int.Parse(textBoxL4.Text.Replace(".", ","));
+            this.T1 = double.Parse(textBoxT1.Text.Replace(".", ","));
+            this.T2 = double.Parse(textBoxT2.Text.Replace(".", ","));
+            this.T3 = double.Parse(textBoxT3.Text.Replace(".", ","));
+            this.T4 = double.Parse(textBoxT4.Text.Replace(".", ","));
+            this.ksi4 = double.Parse(textBoxKsi4.Text.Replace(".", ","));
+
+            commonData.setFields(omegaStart, omegaEnd, l0, l1, l2, l3, l4, T1, T2, T3, T4, ksi4);
+        }
+
         //кнопка "построить график"
         private void buttonCompute_Click(object sender, EventArgs e)
         {
@@ -186,20 +217,7 @@ namespace ЛАЧХ
                 this.button1.Enabled = true;
 
                 //ввод данных
-                double omegaStart = double.Parse(textBoxWStart.Text.Replace(".", ","));
-                firstOmega = omegaStart;
-                step = 0.01 / 100;
-                double omegaEnd = double.Parse(textBoxWEnd.Text.Replace(".", ","));
-                int l0 = int.Parse(textBoxL0.Text.Replace(".", ","));
-                int l1 = int.Parse(textBoxL1.Text.Replace(".", ","));
-                int l2 = int.Parse(textBoxL2.Text.Replace(".", ","));
-                int l3 = int.Parse(textBoxL3.Text.Replace(".", ","));
-                int l4 = int.Parse(textBoxL4.Text.Replace(".", ","));
-                double T1 = double.Parse(textBoxT1.Text.Replace(".", ","));
-                double T2 = double.Parse(textBoxT2.Text.Replace(".", ","));
-                double T3 = double.Parse(textBoxT3.Text.Replace(".", ","));
-                double T4 = double.Parse(textBoxT4.Text.Replace(".", ","));
-                double ksi4 = double.Parse(textBoxKsi4.Text.Replace(".", ","));
+                input();
 
                 this.chart.ChartAreas[0].AxisX.IsLogarithmic = true;
                 this.chart.ChartAreas[0].AxisX.Minimum = omegaStart;
@@ -228,13 +246,19 @@ namespace ЛАЧХ
                     omegas.Add(omegas[omegas.Count - 1] + step);
                 }
 
-
+                
+                shouldAdd = Math.Abs(PFC(1 / T4 + 0.1, l0, l1, l2, l3, l4, T1, T2, T3, T4, ksi4) - PFC(1 / T4, l0, l1, l2, l3, l4, T1, T2, T3, T4, ksi4)) > 90;
                 for (int i = 0; i < omegas.Count; i++)
                 {
                     double omega = omegas[i];
-                    double pfcValue = PFC(omega, l0, l1, l2, l3, l4, T1, T2, T3, T4, ksi4);
-                    formatOutput(omega, pfcValue, data);
-                    afcs.Add(pfcValue);
+                    if (Math.Log10(omega) != 1)
+                    {
+                        double pfcValue = PFC(omega, l0, l1, l2, l3, l4, T1, T2, T3, T4, ksi4);
+                        afcs.Add(pfcValue);
+                    } else
+                    {
+                        afcs.Add(afcs[i - 1]);
+                    }
                 }
 
                 this.chart.Series[0].Points.DataBindXY(omegas, afcs);
@@ -264,17 +288,36 @@ namespace ЛАЧХ
             //преобразование радиан в градусы
             result = radToDegree(result);
 
-            if (omega >= 1 / T4 && omega < omegaEnd) result -= 180;
+            if (shouldAdd && omega >= 1 / T4 && omega < omegaEnd) result -= 180;
             return result;
         }
 
-        //форматирование вывода
-        private void formatOutput(double omega, double function, List<String> list)
+        private Boolean shouldAdd = false;
+
+        private void calculateTable(double omegaStart, double omegaEnd, List<String> list)
         {
-            String omegaFormat = String.Format("{0, 9}", String.Format("{0:F5}", omega));
-            String lgOmegaFormat = String.Format("{0, 9}", String.Format("{0:F5}", Math.Log10(omega)));
-            String functionFormat = String.Format("{0, 9}", String.Format("{0:F5}", function));
-            Debug.WriteLine("ω: " + omegaFormat + "; lg(ω) = " + lgOmegaFormat + "; Θ(ω) = " + functionFormat);
+            String omegaFormat, lgOmegaFormat, functionFormat;
+            double omega;
+
+            int omegaStartLog10 = (int)Math.Log10(omegaStart);
+            int omegaEndLog10 = (int)Math.Log10(omegaEnd);
+            for (int i = omegaStartLog10; i < omegaEndLog10; i++)
+            {
+                for (int j = 1; j < 10; j++)
+                {
+                    omega = j * Math.Pow(10, i);
+
+                    omegaFormat = String.Format("{0, 6}", String.Format("{0, 5}", omega));
+                    lgOmegaFormat = String.Format("{0, 9}", String.Format("{0:F5}", Math.Log10(omega)));
+                    functionFormat = String.Format("{0, 9}", String.Format("{0:F5}", PFC(omega, l0, l1, l2, l3, l4, T1, T2, T3, T4, ksi4)));
+                    list.Add("ω: " + omegaFormat + "; lg(ω) = " + lgOmegaFormat + "; Θ(ω) = " + functionFormat);
+                }
+            }
+
+            omega = Math.Pow(10, omegaEndLog10);
+            omegaFormat = String.Format("{0, 6}", String.Format("{0, 5}", omega));
+            lgOmegaFormat = String.Format("{0, 9}", String.Format("{0:F5}", Math.Log10(omega)));
+            functionFormat = String.Format("{0, 9}", String.Format("{0:F5}", PFC(omega, l0, l1, l2, l3, l4, T1, T2, T3, T4, ksi4)));
             list.Add("ω: " + omegaFormat + "; lg(ω) = " + lgOmegaFormat + "; Θ(ω) = " + functionFormat);
         }
     }
